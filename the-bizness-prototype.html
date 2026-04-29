@@ -108,27 +108,26 @@
     z-index: 200;
     /* invisible spacer — the fixed panel sits on top */
   }
+/* ── SPLASH ──────────────────────────────────────────────── */
   .splash {
     position: fixed;
     inset: 0;
     background: var(--blue);
     z-index: 200;
-    display: flex;
-    align-items: flex-end;
-    padding: var(--pad);
-    /* scroll-driven: slides up as user scrolls through the trap */
+    padding: 0 var(--pad);
+    padding-top: calc((var(--nav-h) / 2) - 6px);
     transform: translateY(0);
-    transition: transform 0s; /* JS drives this smoothly */
+    transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
   }
-  .splash.gone {
+.splash.dismissed {
+    transform: translateY(-100%);
     pointer-events: none;
   }
-  .splash-name {
-    font-family: var(--font-ui);
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: white;
+  .splash.gone {
+    display: none;
+  }
+  .splash.gone {
+    display: none;
   }
 
   /* ── HOMEPAGE ────────────────────────────────────────────── */
@@ -401,7 +400,6 @@
 
 <!-- ── PAGE: HOME ────────────────────────────────────────── -->
 <div class="page active" id="page-home">
-  <div class="splash-scroll-trap" id="splash-trap"></div>
   <main class="home">
     <div class="grid">
 
@@ -598,37 +596,37 @@
 </div>
 
 <script>
-  // Scroll-driven splash — once per session only
+// Splash — slides away on first scroll or click, then removed entirely
   const splash = document.getElementById('splash');
-  const trap   = document.getElementById('splash-trap');
+  let splashDismissed = false;
 
-  function initSplash() {
-    if (sessionStorage.getItem('splash-seen')) {
-      // Already seen — hide splash and collapse trap instantly
-      splash.style.display = 'none';
-      trap.style.height = '0';
-      return;
-    }
-
-    // Trap is 100vh — gives the page scroll room to push splash away
-    trap.style.height = '100vh';
-
-    window.addEventListener('scroll', onSplashScroll, { passive: true });
+  // Skip splash if already seen this session
+  if (sessionStorage.getItem('splash-seen')) {
+    splash.classList.add('gone');
+    splashDismissed = true;
   }
 
-  function onSplashScroll() {
-    const scrolled  = window.scrollY;
-    const trapH     = window.innerHeight;
-    const progress  = Math.min(scrolled / trapH, 1);
-    splash.style.transform = `translateY(-${progress * 100}%)`;
-    if (progress >= 1) {
+  function dismissSplash() {
+    if (splashDismissed) return;
+    splashDismissed = true;
+    splash.classList.add('dismissed');
+    sessionStorage.setItem('splash-seen', '1');
+    // After the slide-up transition, remove from layout entirely
+    setTimeout(() => {
       splash.classList.add('gone');
-      sessionStorage.setItem('splash-seen', '1');
-      window.removeEventListener('scroll', onSplashScroll);
-    }
+      window.scrollTo(0, 0);
+    }, 600);
+    window.removeEventListener('scroll', onFirstScroll);
   }
 
-  initSplash();
+  function onFirstScroll() {
+    if (window.scrollY > 10) dismissSplash();
+  }
+
+  if (!splashDismissed) {
+    window.addEventListener('scroll', onFirstScroll, { passive: true });
+    splash.addEventListener('click', dismissSplash);
+  }
 
   // Nav scroll state
   // IntersectionObserver fallback for .story-image (browsers without animation-timeline)
