@@ -22,9 +22,9 @@
     --font-serif:  'Cormorant Garamond', Georgia, serif;
     --font-body:   'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-    --nav-h:       72px;
+ --nav-h:       110px;
     --max-w:       1280px;
-    --pad:         clamp(24px, 4vw, 64px);
+    --pad:         clamp(40px, 8vw, 100px);
   }
 
   /* ── RESET ───────────────────────────────────────────────── */
@@ -34,7 +34,7 @@
   a { text-decoration: none; color: inherit; }
   img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-  /* ── NAV ─────────────────────────────────────────────────── */
+/* ── NAV ─────────────────────────────────────────────────── */
   .nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -42,18 +42,20 @@
     background: var(--bg);
   }
   .nav-top {
-    padding: 10px var(--pad) 0;
+    padding: 28px var(--pad) 0;
+    display: flex;
+    align-items: flex-end;
   }
   .nav-logo {
     font-family: var(--font-ui);
-    font-size: 13px;
-    letter-spacing: 0.12em;
+    font-size: 28px;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--blue);
+    line-height: 1;
+    /* logo baseline sits on the divider */
+    padding-bottom: 6px;
     display: inline-block;
-    /* sit logo baseline flush on the divider line */
-    padding-bottom: 3px;
-    /* no text-decoration underline — the divider IS the underline */
   }
   .nav-divider {
     height: 1px;
@@ -65,35 +67,23 @@
     justify-content: flex-end;
     align-items: center;
     gap: 32px;
-    /* links touch the line from below */
-    padding: 2px var(--pad) 6px;
+    padding: 14px var(--pad) 0;
   }
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 36px;
     list-style: none;
   }
   .nav-links a {
     font-family: var(--font-ui);
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--blue);
     transition: opacity 0.2s;
   }
   .nav-links a:hover { opacity: 0.55; }
-  .nav-search {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    color: var(--blue);
-    line-height: 1;
-    font-size: 13px;
-    font-family: var(--font-ui);
-    letter-spacing: 0.1em;
-  }
 
   /* ── PAGE SWITCHER (prototype only) ─────────────────────── */
   .page { display: none; }
@@ -169,31 +159,32 @@
   /* real images when you add src */
   .card-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
 
-  .card-overlay {
+.card-overlay {
     position: absolute;
     inset: 0;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
     padding: 0;
     opacity: 0;
     transition: opacity 0.35s ease;
+    text-align: center;
   }
 
-  .card:hover .card-img { filter: blur(6px) brightness(0.65); }
+  .card:hover .card-img { filter: blur(14px) brightness(0.7); }
   .card:hover .card-overlay { opacity: 1; }
 
   .card-name,
   .card-discipline {
     font-family: var(--font-ui);
     font-weight: 700;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.01em;
     text-transform: uppercase;
     color: var(--blue);
-    line-height: 0.9;
-    text-align: right;
-    font-size: 22cqw;
+    line-height: 0.92;
+    text-align: center;
+    font-size: 14cqw;
   }
 
   /* container query so cqw is relative to card width */
@@ -335,6 +326,20 @@
     clear: both;
   }
 
+  /* ── SOCIAL ICON ─────────────────────────────────────────── */
+  .social-ig {
+    position: fixed;
+    bottom: 24px;
+    right: var(--pad);
+    z-index: 80;
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+  }
+  .social-ig:hover { opacity: 0.6; }
+
   /* ── PROTO NAV (not part of design) ─────────────────────── */
   .proto-nav {
     position: fixed;
@@ -394,9 +399,17 @@
       <li><a href="#">Projects</a></li>
       <li><a href="#">Img</a></li>
     </ul>
-    <button class="nav-search" aria-label="Search">⌕</button>
   </div>
 </nav>
+
+<!-- Instagram icon, fixed bottom-right -->
+<a class="social-ig" href="#" aria-label="Instagram" target="_blank" rel="noopener">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+  </svg>
+</a>
 
 <!-- ── PAGE: HOME ────────────────────────────────────────── -->
 <div class="page active" id="page-home">
