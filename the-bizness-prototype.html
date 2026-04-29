@@ -105,7 +105,7 @@
     background: var(--blue);
     z-index: 200;
     padding: 0 var(--pad);
-    padding-top: calc((var(--nav-h) / 2) - 6px);
+    padding-top: 28px;
     transform: translateY(0);
     transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
   }
@@ -115,6 +115,16 @@
   }
   .splash.gone {
     display: none;
+  }
+  .splash-name {
+    font-family: var(--font-ui);
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #ffffff;
+    line-height: 1;
+    padding-bottom: 6px;
+    display: inline-block;
   }
   .splash.gone {
     display: none;
