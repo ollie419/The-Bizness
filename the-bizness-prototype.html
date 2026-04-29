@@ -330,7 +330,7 @@
   .social-ig {
     position: fixed;
     bottom: 24px;
-    right: var(--pad);
+    right: calc(var(--pad) / 2);
     z-index: 80;
     color: var(--blue);
     display: flex;
@@ -341,29 +341,29 @@
   .social-ig:hover { opacity: 0.6; }
 
   /* ── PROTO NAV (not part of design) ─────────────────────── */
-  .proto-nav {
+.proto-nav {
     position: fixed;
-    bottom: 24px;
-    right: 24px;
+    top: 8px;
+    right: 8px;
     z-index: 300;
     display: flex;
-    gap: 8px;
+    gap: 4px;
   }
   .proto-btn {
     font-family: var(--font-ui);
-    font-size: 11px;
-    letter-spacing: 0.1em;
+    font-size: 9px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 8px 14px;
-    background: var(--ink);
+    padding: 4px 8px;
+    background: #cc0000;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 2px;
-    opacity: 0.7;
+    opacity: 0.6;
     transition: opacity 0.2s;
   }
-  .proto-btn.active { background: var(--blue); opacity: 1; }
+  .proto-btn.active { background: #ff0000; opacity: 1; }
   .proto-btn:hover { opacity: 1; }
 
   /* ── RESPONSIVE ──────────────────────────────────────────── */
