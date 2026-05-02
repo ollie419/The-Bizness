@@ -263,8 +263,8 @@
   }
 
   .story-portrait {
-    width: 280px;
-    height: 350px;
+    width: 320px;
+    height: 400px;
     flex-shrink: 0;
     background: #ffffff;
     overflow: hidden;
@@ -282,6 +282,14 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
+    /* push title to bottom to align with portrait bottom */
+    height: 400px;
+    justify-content: space-between;
+  }
+  .story-meta-top {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
   .story-meta span {
     font-family: var(--font-nav);
@@ -295,8 +303,19 @@
     font-size: 16pt;
     font-weight: 300;
     color: var(--blue);
-    margin-top: 20px;
     line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .story-credits {
+    font-family: var(--font-nav);
+    font-size: 10pt;
+    font-weight: 300;
+    color: var(--blue);
+    margin-top: 4px;
+  }
+  .story-meta-bottom {
+    display: flex;
+    flex-direction: column;
   }
 
   .story-body {
@@ -335,9 +354,17 @@
     border-radius: 50%;
     background: var(--blue);
     border: none;
-    cursor
-
-  /* Two-column layout: portrait left, content right */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-nav);
+    font-size: 9pt;
+    font-weight: 300;
+    color: white;
+    transition: opacity 0.2s ease;
+  }
+  .share-btn:hover { opacity: 0.8; }
 
 
   /* ── ARTICLE BODY ─────────────────────────────────────────── */
@@ -574,10 +601,18 @@
         <!-- <img src="portrait.jpg" alt="Andu Masebo"> -->
       </div>
       <div class="story-meta">
-        <span>Andu Masebo</span>
-        <span>Designer</span>
-        <span>London</span>
-        <h1 class="story-title">Andu Makes Cool Sh*t</h1>
+        <div class="story-meta-top">
+          <span>Andu Masebo</span>
+          <span>Designer</span>
+          <span>London</span>
+        </div>
+        <div class="story-meta-bottom">
+          <h1 class="story-title">Andu Makes Cool Sh*t</h1>
+          <div class="story-credits">
+            <span>Images: Mr Photographer</span>&nbsp;&nbsp;
+            <span>Words: Mr Writer</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -592,11 +627,6 @@
         <p>In sit amet lacus sed ligula malesuada ultricies. Phasellus nec augue ut tellus laoreet facilisis. Ut dapibus quis mi vitae interdum. Aliquam auctor, turpis at porta tempor, erat turpis lacinia dui.</p>
 
         <p>Nunc quam sem, consectetur non vulputate nec, accumsan eget augue. Vestibulum dictum ante nunc, id interdum magna semper non. In tellus nunc, interdum quis mattis eget, venenatis eu nisi.</p>
-
-        <div class="story-credits">
-          <span>Images: Mr Photographer</span>&nbsp;&nbsp;
-          <span>Words: Mr Writer</span>
-        </div>
       </div>
     </div>
 
