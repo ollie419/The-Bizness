@@ -6,25 +6,25 @@
 <title>The Bizness</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DIN+Condensed&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DIN+Condensed&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300&display=swap" rel="stylesheet">
 
 <style>
   /* ── TOKENS ─────────────────────────────────────────────── */
-  :root {
-    --bg:          #dcdcdc;
+:root {
+    --bg:          #e6e6e6;
     --blue:        #0000ff;
     --ink:         #111111;
     --ink-mid:     #555555;
     --ink-light:   #999999;
 
-    /* swap this one line to change nav/overlay font */
     --font-ui:     'DIN Condensed', 'Barlow Condensed', sans-serif;
+    --font-nav:    'Inter', sans-serif;
     --font-serif:  'Cormorant Garamond', Georgia, serif;
     --font-body:   'Helvetica Neue', Helvetica, Arial, sans-serif;
 
- --nav-h:       110px;
-    --max-w:       1280px;
-    --pad:         clamp(40px, 8vw, 100px);
+    --pad:         40px;
+    --logo-large:  130px;
+    --logo-small:  14px;
   }
 
   /* ── RESET ───────────────────────────────────────────────── */
@@ -35,55 +35,54 @@
   img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 /* ── NAV ─────────────────────────────────────────────────── */
-  .nav {
+  /* ── NAV ─────────────────────────────────────────────────── */
+
+  /* Corner nav labels — fixed to viewport */
+  .nav-corner {
     position: fixed;
-    top: 0; left: 0; right: 0;
     z-index: 100;
-    background: var(--bg);
-  }
-  .nav-top {
-    padding: 28px var(--pad) 0;
-    display: flex;
-    align-items: flex-end;
-  }
-  .nav-logo {
-    font-family: var(--font-ui);
-    font-size: 28px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    font-family: var(--font-nav);
+    font-size: 10pt;
+    font-weight: 300;
     color: var(--blue);
-    line-height: 1;
-    /* logo baseline sits on the divider */
-    padding-bottom: 6px;
-    display: inline-block;
-  }
-  .nav-divider {
-    height: 1px;
-    background: var(--blue);
-    width: 100%;
-  }
-  .nav-bottom {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 32px;
-    padding: 14px var(--pad) 0;
-  }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 36px;
-    list-style: none;
-  }
-  .nav-links a {
-    font-family: var(--font-ui);
-    font-size: 13px;
-    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--blue);
+    letter-spacing: 0.08em;
+    cursor: pointer;
     transition: opacity 0.2s;
   }
-  .nav-links a:hover { opacity: 0.55; }
+  .nav-corner:hover { opacity: 0.6; }
+  .nav-info    { top: var(--pad); left: var(--pad); }
+  .nav-tag     { top: var(--pad); right: var(--pad); }
+  .nav-projects{ bottom: var(--pad); left: var(--pad); }
+  .nav-img     { bottom: var(--pad); right: var(--pad); }
+
+  /* Centre logo — shrinks on scroll */
+  .nav-logo {
+    position: fixed;
+    top: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    font-family: var(--font-ui);
+    font-size: var(--logo-large);
+    font-weight: 500;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    /* smooth size transition */
+    transition: font-size 0.1s linear, top 0.1s linear;
+    transform-origin: center top;
+  }
+  .nav-logo.scrolled {
+    font-size: var(--logo-small);
+    top: var(--pad);
+    letter-spacing: 0.12em;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
 
   /* ── PAGE SWITCHER (prototype only) ─────────────────────── */
   .page { display: none; }
@@ -104,10 +103,9 @@
     inset: 0;
     background: var(--blue);
     z-index: 200;
-    padding: 0 var(--pad);
-    padding-bottom: 28px;
     display: flex;
     align-items: flex-end;
+    padding: 0 var(--pad) var(--pad);
     transform: translateY(0);
     transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
   }
@@ -399,20 +397,11 @@
 </div>
 
 <!-- NAV -->
-<nav class="nav" id="nav">
-  <div class="nav-top">
-    <a class="nav-logo" href="#" onclick="showPage('home')">The Bizness</a>
-  </div>
-  <div class="nav-divider"></div>
-  <div class="nav-bottom">
-    <ul class="nav-links">
-      <li><a href="#">Info</a></li>
-      <li><a href="#">Tagged</a></li>
-      <li><a href="#">Projects</a></li>
-      <li><a href="#">Img</a></li>
-    </ul>
-  </div>
-</nav>
+<a class="nav-corner nav-info" href="#" onclick="showPage('home'); return false;">Info</a>
+<a class="nav-corner nav-tag" href="#">Tag</a>
+<a class="nav-corner nav-projects" href="#">Projects</a>
+<a class="nav-corner nav-img" href="#">IMG</a>
+<a class="nav-logo" id="navLogo" href="#" onclick="showPage('home'); return false;">The Bizness</a>
 
 <!-- Instagram icon, fixed bottom-right -->
 <a class="social-ig" href="#" aria-label="Instagram" target="_blank" rel="noopener">
@@ -652,6 +641,32 @@
     window.addEventListener('scroll', onFirstScroll, { passive: true });
     splash.addEventListener('click', dismissSplash);
   }
+
+  // Logo shrink on scroll
+  const navLogo = document.getElementById('navLogo');
+  const logoLargeSize = 130;
+  const logoSmallSize = 14;
+  const shrinkStart = 0;
+  const shrinkEnd = 200;
+
+  function updateLogo() {
+    const y = window.scrollY;
+    const progress = Math.min(Math.max((y - shrinkStart) / (shrinkEnd - shrinkStart), 0), 1);
+    const size = logoLargeSize - (logoLargeSize - logoSmallSize) * progress;
+    const topStart = 52;
+    const topEnd = 40;
+    const top = topStart - (topStart - topEnd) * progress;
+    navLogo.style.fontSize = size + 'px';
+    navLogo.style.top = top + 'px';
+    if (progress >= 1) {
+      navLogo.classList.add('scrolled');
+    } else {
+      navLogo.classList.remove('scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', updateLogo, { passive: true });
+  updateLogo();
 
   // Nav scroll state
   // IntersectionObserver fallback for .story-image (browsers without animation-timeline)
