@@ -741,11 +741,15 @@
     document.getElementById('btn-' + name).classList.add('active');
     window.scrollTo(0, 0);
 
-    // Hide logo on non-home pages
+    // Small logo on non-home pages
     if (name !== 'home') {
-      navLogo.classList.add('hidden');
+      navLogo.classList.add('scrolled');
+      navLogo.style.fontSize = '14px';
+      navLogo.style.top = '40px';
     } else {
-      navLogo.classList.remove('hidden');
+      navLogo.classList.remove('scrolled');
+      navLogo.style.fontSize = '';
+      navLogo.style.top = '';
       updateLogo();
     }
   }
