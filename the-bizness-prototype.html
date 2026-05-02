@@ -131,24 +131,27 @@
   }
 
   /* ── HOMEPAGE ────────────────────────────────────────────── */
-  .home {
-    padding-top: calc(var(--nav-h) + 32px); /* grid starts after scroll trap */
-    padding-left: var(--pad);
-    padding-right: var(--pad);
+.home {
+    padding-top: 100px;
     padding-bottom: 80px;
   }
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
+    grid-template-columns: repeat(4, 200px);
+    gap: 30px;
+    justify-content: center;
+    width: 890px;
+    margin: 0 auto;
   }
 
   .card {
     position: relative;
-    aspect-ratio: 4/5;
+    width: 200px;
+    height: 250px;
     overflow: hidden;
     cursor: pointer;
+    container-type: inline-size;
   }
 
   /* placeholder images — grey tones */
@@ -498,6 +501,16 @@
           <div class="card-discipline">Chef</div>
         </div>
       </article>
+
+      <!-- Cards 9–16 (blank) -->
+      <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
+      <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
+      <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
+      <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
+      <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
+      <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
+      <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
+      <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
 
     </div>
   </main>
