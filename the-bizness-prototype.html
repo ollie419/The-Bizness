@@ -48,13 +48,75 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
     cursor: pointer;
-    transition: opacity 0.2s;
+    /* yellow circle via pseudo element */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .nav-corner:hover { opacity: 0.6; }
+  .nav-corner::before {
+    content: '';
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffff00;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .nav-corner:hover::before,
+  .nav-corner.active::before { opacity: 1; }
   .nav-info    { top: var(--pad); left: var(--pad); }
   .nav-tag     { top: var(--pad); right: var(--pad); }
   .nav-projects{ bottom: var(--pad); left: var(--pad); }
   .nav-img     { bottom: var(--pad); right: var(--pad); }
+
+  /* ── TAG DROPDOWN ────────────────────────────────────────── */
+  .tag-dropdown {
+    position: fixed;
+    top: calc(var(--pad) + 28px);
+    right: var(--pad);
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .tag-dropdown.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .tag-item {
+    font-family: var(--font-nav);
+    font-size: 10pt;
+    font-weight: 300;
+    color: var(--blue);
+    text-transform: capitalize;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    padding: 2px 0;
+    transition: opacity 0.15s;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tag-item::before {
+    content: '';
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffff00;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .tag-item:hover::before,
+  .tag-item.active::before { opacity: 1; }
 
   /* Centre logo — shrinks on scroll */
   .nav-logo {
@@ -370,6 +432,20 @@
 <a class="nav-corner nav-tag" href="#">Tag</a>
 <a class="nav-corner nav-projects" href="#">Projects</a>
 <a class="nav-corner nav-img" href="#">IMG</a>
+
+<!-- Tag dropdown -->
+<div class="tag-dropdown" id="tagDropdown">
+  <span class="tag-item" data-tag="art">Art</span>
+  <span class="tag-item" data-tag="architecture">Architecture</span>
+  <span class="tag-item" data-tag="design">Design</span>
+  <span class="tag-item" data-tag="fashion">Fashion</span>
+  <span class="tag-item" data-tag="film">Film</span>
+  <span class="tag-item" data-tag="food">Food</span>
+  <span class="tag-item" data-tag="home">Home & Interior</span>
+  <span class="tag-item" data-tag="music">Music/Sound</span>
+  <span class="tag-item" data-tag="photography">Photography</span>
+  <span class="tag-item" data-tag="sport">Sport</span>
+</div>
 <a class="nav-logo" id="navLogo" href="#" onclick="showPage('home'); return false;">The Bizness</a>
 
 <!-- Moon icon, fixed centre-left -->
@@ -622,6 +698,51 @@
 
   window.addEventListener('scroll', updateLogo, { passive: true });
   updateLogo();
+
+  // Tag dropdown + filtering
+  const navTag       = document.querySelector('.nav-tag');
+  const tagDropdown  = document.getElementById('tagDropdown');
+  const tagItems     = document.querySelectorAll('.tag-item');
+  const cards        = document.querySelectorAll('.card');
+  let activeTag      = null;
+
+  navTag.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = tagDropdown.classList.contains('open');
+    tagDropdown.classList.toggle('open', !isOpen);
+    navTag.classList.toggle('active', !isOpen);
+  });
+
+  tagItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const tag = item.dataset.tag;
+
+      // Toggle off if already active
+      if (activeTag === tag) {
+        activeTag = null;
+        tagItems.forEach(t => t.classList.remove('active'));
+        cards.forEach(c => c.style.display = '');
+      } else {
+        activeTag = tag;
+        tagItems.forEach(t => t.classList.remove('active'));
+        item.classList.add('active');
+        cards.forEach(c => {
+          const cardTag = c.dataset.tag;
+          c.style.display = (!cardTag || cardTag === tag) ? '' : 'none';
+        });
+      }
+
+      tagDropdown.classList.remove('open');
+      navTag.classList.remove('active');
+    });
+  });
+
+  // Close dropdown on outside click
+  document.addEventListener('click', () => {
+    tagDropdown.classList.remove('open');
+    navTag.classList.remove('active');
+  });
 
   // Nav scroll state
   // IntersectionObserver fallback for .story-image (browsers without animation-timeline)
