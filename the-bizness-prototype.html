@@ -649,7 +649,10 @@
   const shrinkStart = 0;
   const shrinkEnd = 200;
 
+  let isHomePage = true;
+
   function updateLogo() {
+    if (!isHomePage) return;
     const y = window.scrollY;
     const progress = Math.min(Math.max((y - shrinkStart) / (shrinkEnd - shrinkStart), 0), 1);
     const size = logoLargeSize - (logoLargeSize - logoSmallSize) * progress;
@@ -741,12 +744,14 @@
     document.getElementById('btn-' + name).classList.add('active');
     window.scrollTo(0, 0);
 
-    // Small logo on non-home pages
+    // Small static logo on non-home pages
     if (name !== 'home') {
+      isHomePage = false;
       navLogo.classList.add('scrolled');
       navLogo.style.fontSize = '14px';
       navLogo.style.top = '40px';
     } else {
+      isHomePage = true;
       navLogo.classList.remove('scrolled');
       navLogo.style.fontSize = '';
       navLogo.style.top = '';
