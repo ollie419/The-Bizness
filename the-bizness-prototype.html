@@ -97,38 +97,6 @@
     z-index: 200;
     /* invisible spacer — the fixed panel sits on top */
   }
-/* ── SPLASH ──────────────────────────────────────────────── */
-  .splash {
-    position: fixed;
-    inset: 0;
-    background: var(--blue);
-    z-index: 200;
-    display: flex;
-    align-items: flex-end;
-    padding: 0 var(--pad) var(--pad);
-    transform: translateY(0);
-    transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
-  }
-.splash.dismissed {
-    transform: translateY(-100%);
-    pointer-events: none;
-  }
-  .splash.gone {
-    display: none;
-  }
-  .splash-name {
-    font-family: var(--font-ui);
-    font-size: 28px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: #ffffff;
-    line-height: 1;
-    padding-bottom: 6px;
-    display: inline-block;
-  }
-  .splash.gone {
-    display: none;
-  }
 
   /* ── HOMEPAGE ────────────────────────────────────────────── */
 .home {
@@ -138,17 +106,18 @@
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(4, 200px);
-    gap: 30px;
+    grid-template-columns: repeat(4, minmax(0, 240px));
+    gap: clamp(20px, 2vw, 30px);
     justify-content: center;
-    width: 890px;
+    width: min(1050px, calc(100vw - 550px));
     margin: 0 auto;
   }
 
   .card {
     position: relative;
-    width: 200px;
-    height: 250px;
+    width: 100%;
+    aspect-ratio: 4/5;
+    max-width: 240px;
     overflow: hidden;
     cursor: pointer;
     container-type: inline-size;
@@ -339,20 +308,22 @@
     clear: both;
   }
 
-  /* ── SOCIAL ICON ─────────────────────────────────────────── */
-  .social-ig {
+ /* ── SIDE ICONS ──────────────────────────────────────────── */
+  .side-icon {
     position: fixed;
-    bottom: 24px;
-    right: calc(var(--pad) / 2);
+    top: 50vh;
+    transform: translateY(-50%);
     z-index: 80;
     color: var(--blue);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: opacity 0.2s;
+    cursor: pointer;
   }
-  .social-ig:hover { opacity: 0.6; }
-
+  .side-icon:hover { opacity: 0.6; }
+  .side-moon { left: var(--pad); }
+  .side-ig   { right: calc(var(--pad) / 2); }
   /* ── PROTO NAV (not part of design) ─────────────────────── */
 .proto-nav {
     position: fixed;
@@ -394,11 +365,6 @@
 </head>
 <body>
 
-<!-- SPLASH -->
-<div class="splash" id="splash">
-  <span class="splash-name">The Bizness</span>
-</div>
-
 <!-- NAV -->
 <a class="nav-corner nav-info" href="#" onclick="showPage('home'); return false;">Info</a>
 <a class="nav-corner nav-tag" href="#">Tag</a>
@@ -406,9 +372,16 @@
 <a class="nav-corner nav-img" href="#">IMG</a>
 <a class="nav-logo" id="navLogo" href="#" onclick="showPage('home'); return false;">The Bizness</a>
 
-<!-- Instagram icon, fixed bottom-right -->
-<a class="social-ig" href="#" aria-label="Instagram" target="_blank" rel="noopener">
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<!-- Moon icon, fixed centre-left -->
+<button class="side-icon side-moon" aria-label="Toggle dark mode">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+</button>
+
+<!-- Instagram icon, fixed centre-right -->
+<a class="side-icon side-ig" href="#" aria-label="Instagram" target="_blank" rel="noopener">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
@@ -623,37 +596,6 @@
 </div>
 
 <script>
-// Splash — slides away on first scroll or click, then removed entirely
-  const splash = document.getElementById('splash');
-  let splashDismissed = false;
-
-  // Skip splash if already seen this session
-  if (sessionStorage.getItem('splash-seen')) {
-    splash.classList.add('gone');
-    splashDismissed = true;
-  }
-
-  function dismissSplash() {
-    if (splashDismissed) return;
-    splashDismissed = true;
-    splash.classList.add('dismissed');
-    sessionStorage.setItem('splash-seen', '1');
-    // After the slide-up transition, remove from layout entirely
-    setTimeout(() => {
-      splash.classList.add('gone');
-      window.scrollTo(0, 0);
-    }, 600);
-    window.removeEventListener('scroll', onFirstScroll);
-  }
-
-  function onFirstScroll() {
-    if (window.scrollY > 10) dismissSplash();
-  }
-
-  if (!splashDismissed) {
-    window.addEventListener('scroll', onFirstScroll, { passive: true });
-    splash.addEventListener('click', dismissSplash);
-  }
 
   // Logo shrink on scroll
   const navLogo = document.getElementById('navLogo');
