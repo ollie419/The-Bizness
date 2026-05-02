@@ -59,7 +59,7 @@
   /* Centre logo — shrinks on scroll */
   .nav-logo {
     position: fixed;
-    top: 52px;
+    top: 200px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
@@ -666,7 +666,7 @@
     const y = window.scrollY;
     const progress = Math.min(Math.max((y - shrinkStart) / (shrinkEnd - shrinkStart), 0), 1);
     const size = logoLargeSize - (logoLargeSize - logoSmallSize) * progress;
-    const topStart = 52;
+    const topStart = 200;
     const topEnd = 40;
     const top = topStart - (topStart - topEnd) * progress;
     navLogo.style.fontSize = size + 'px';
