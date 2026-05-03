@@ -894,24 +894,7 @@
   });
 
   // Lightbox
-  const lightbox = document.getElementById('lightbox');
-  document.getElementById('imgGrid').addEventListener('click', (e) => {
-    const item = e.target.closest('.img-item');
-    if (!item) return;
-    lightbox.classList.add('open');
-  });
-  lightbox.addEventListener('click', () => {
-    lightbox.classList.remove('open');
-  });
-
-  // IMG nav button
-  document.querySelector('.nav-img').addEventListener('click', (e) => {
-    e.preventDefault();
-    showPage('img');
-  });
-
-  // Lightbox
-  const lightbox = document.getElementById('lightbox');
+  const lightbox = document.getElementById('lightbox'); 
   document.getElementById('imgGrid').addEventListener('click', (e) => {
     const item = e.target.closest('.img-item');
     if (!item) return;
