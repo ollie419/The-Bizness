@@ -442,6 +442,120 @@
   .proto-btn.active { background: #ff0000; opacity: 1; }
   .proto-btn:hover { opacity: 1; }
 
+  /* ── INFO PAGE ───────────────────────────────────────────── */
+  .info-page {
+    padding-top: 100px;
+    padding-bottom: 80px;
+  }
+
+  .info-top {
+    display: flex;
+    align-items: flex-start;
+    padding-left: 546px;
+  }
+
+  .info-portrait {
+    width: 320px;
+    height: 400px;
+    flex-shrink: 0;
+    background: #cccccc;
+    overflow: hidden;
+  }
+  .info-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .info-text {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 400px;
+    width: 600px;
+  }
+  .info-text p {
+    font-family: var(--font-nav);
+    font-size: 8pt;
+    font-weight: 300;
+    color: var(--blue);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+  .info-text p:first-child {
+    margin-bottom: 8px;
+  }
+
+  .info-form-wrap {
+    padding-left: 546px;
+    margin-top: 20px;
+  }
+
+  .info-enquiry {
+    font-family: var(--font-nav);
+    font-size: 8pt;
+    font-weight: 300;
+    color: var(--blue);
+    margin-bottom: 20px;
+  }
+
+  .info-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 600px;
+  }
+
+  .info-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .info-field label {
+    font-family: var(--font-nav);
+    font-size: 8pt;
+    font-weight: 300;
+    color: var(--blue);
+    margin-bottom: 0;
+  }
+
+  .info-field input,
+  .info-field textarea {
+    background: transparent;
+    border: 0.25px solid white;
+    outline: none;
+    font-family: var(--font-nav);
+    font-size: 8pt;
+    font-weight: 300;
+    color: var(--blue);
+    padding: 8px;
+    resize: none;
+    width: 100%;
+  }
+
+  .info-field input { height: 36px; }
+  .info-field textarea { height: 100px; }
+
+  .info-send {
+    font-family: var(--font-nav);
+    font-size: 8pt;
+    font-weight: 300;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    text-align: right;
+    width: 600px;
+    display: block;
+    margin-top: 4px;
+  }
+  .info-send:hover { opacity: 0.6; }
+
   /* ── IMG PAGE ────────────────────────────────────────────── */
   .img-page {
     padding-top: 100px;
@@ -762,6 +876,42 @@
 
 </div>
 
+<!-- ── PAGE: INFO ───────────────────────────────────────── -->
+<div class="page" id="page-info">
+  <main class="info-page">
+
+    <div class="info-top">
+      <div class="info-portrait">
+        <!-- <img src="info-image.jpg" alt=""> -->
+      </div>
+      <div class="info-text">
+        <p>The BIZNESS is a blog.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit convallis, commodo risus ac, fringilla augue. Sed laoreet dapibus diam eu molestie. Donec hendrerit ex ac nulla finibus dapibus. Nulla facilisi. Praesent dapibus lacus eget nisl laoreet, vitae faucibus massa tristique. Suspendisse fermentum mollis risus, ac dictum est convallis quis. Integer id magna pellentesque, efficitur lectus ut, commodo sem.</p>
+      </div>
+    </div>
+
+    <div class="info-form-wrap">
+      <p class="info-enquiry">For all enquiries please fill out the contact form below and we'll get back to you.</p>
+      <div class="info-form">
+        <div class="info-field">
+          <label>Name</label>
+          <input type="text">
+        </div>
+        <div class="info-field">
+          <label>Email address</label>
+          <input type="email">
+        </div>
+        <div class="info-field">
+          <label>Message</label>
+          <textarea></textarea>
+        </div>
+        <button class="info-send">Send</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
 <!-- ── PAGE: IMG ─────────────────────────────────────────── -->
 <div class="page" id="page-img">
   <main class="img-page">
@@ -809,6 +959,7 @@
 <!-- PROTOTYPE SWITCHER -->
 <div class="proto-nav">
   <button class="proto-btn active" id="btn-home" onclick="showPage('home')">Homepage</button>
+  <button class="proto-btn" id="btn-info" onclick="showPage('info')">Info page</button>
   <button class="proto-btn" id="btn-story" onclick="showPage('story')">Story page</button>
   <button class="proto-btn" id="btn-img" onclick="showPage('img')">IMG page</button>
 </div>
@@ -887,6 +1038,12 @@
   document.addEventListener('click', () => {
     tagDropdown.classList.remove('open');
     navTag.classList.remove('active');
+  });
+
+  // Info nav button
+  document.querySelector('.nav-info').addEventListener('click', (e) => {
+    e.preventDefault();
+    showPage('info');
   });
 
   // IMG nav button
