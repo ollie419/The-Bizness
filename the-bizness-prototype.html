@@ -460,7 +460,7 @@
   .img-grid {
     columns: 5;
     column-gap: 10px;
-    width: 700px;
+    width: 900px;
     margin: 0 auto;
   }
 
@@ -495,11 +495,12 @@
     opacity: 1;
     pointer-events: all;
   }
-  .lightbox-img {
-    height: 300px;
+ .lightbox-img {
+    max-height: 500px;
+    max-width: 500px;
     background: #cccccc;
-    transition: height 0.2s ease;
-    aspect-ratio: 4/5;
+    width: auto;
+    height: auto;
   }
 
   /* ── IMG PAGE ────────────────────────────────────────────── */
@@ -520,7 +521,7 @@
   .img-grid {
     columns: 5;
     column-gap: 10px;
-    width: 700px;
+    width: 900px;
     margin: 0 auto;
   }
 
@@ -555,11 +556,12 @@
     opacity: 1;
     pointer-events: all;
   }
-  .lightbox-img {
-    height: 300px;
+ .lightbox-img {
+    max-height: 500px;
+    max-width: 500px;
     background: #cccccc;
-    transition: height 0.2s ease;
-    aspect-ratio: 4/5;
+    width: auto;
+    height: auto;
   }
 
   /* ── RESPONSIVE ──────────────────────────────────────────── */
@@ -894,10 +896,23 @@
   });
 
   // Lightbox
-  const lightbox = document.getElementById('lightbox'); 
+const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
   document.getElementById('imgGrid').addEventListener('click', (e) => {
     const item = e.target.closest('.img-item');
     if (!item) return;
+    const w = item.offsetWidth;
+    const h = item.offsetHeight;
+    const ratio = w / h;
+    if (ratio >= 1) {
+      lightboxImg.style.width = '500px';
+      lightboxImg.style.height = 'auto';
+      lightboxImg.style.aspectRatio = String(ratio);
+    } else {
+      lightboxImg.style.height = '500px';
+      lightboxImg.style.width = 'auto';
+      lightboxImg.style.aspectRatio = String(ratio);
+    }
     lightbox.classList.add('open');
   });
   lightbox.addEventListener('click', () => {
