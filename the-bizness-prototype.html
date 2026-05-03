@@ -468,12 +468,14 @@
   }
 
   .info-text {
-    padding-left: 20px;
+    padding-left: 30px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     height: 400px;
-    width: 600px;
+    width: 450px;
+    border: 0.25px solid white;
+    padding: 16px 16px 16px 30px;
   }
   .info-text p {
     font-family: var(--font-nav);
@@ -489,7 +491,7 @@
 
   .info-form-wrap {
     padding-left: 546px;
-    margin-top: 20px;
+    margin-top: 30px;
   }
 
   .info-enquiry {
@@ -504,7 +506,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 600px;
+    width: 800px;
   }
 
   .info-field {
@@ -550,7 +552,7 @@
     cursor: pointer;
     padding: 0;
     text-align: right;
-    width: 600px;
+    width: 800px;
     display: block;
     margin-top: 4px;
   }
@@ -959,8 +961,8 @@
 <!-- PROTOTYPE SWITCHER -->
 <div class="proto-nav">
   <button class="proto-btn active" id="btn-home" onclick="showPage('home')">Homepage</button>
-  <button class="proto-btn" id="btn-info" onclick="showPage('info')">Info page</button>
   <button class="proto-btn" id="btn-story" onclick="showPage('story')">Story page</button>
+  <button class="proto-btn" id="btn-info" onclick="showPage('info')">Info page</button>
   <button class="proto-btn" id="btn-img" onclick="showPage('img')">IMG page</button>
 </div>
 
