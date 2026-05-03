@@ -502,6 +502,66 @@
     aspect-ratio: 4/5;
   }
 
+  /* ── IMG PAGE ────────────────────────────────────────────── */
+  .img-page {
+    padding-top: 100px;
+    padding-bottom: 80px;
+  }
+
+  .img-curated {
+    text-align: center;
+    font-family: var(--font-nav);
+    font-size: 14pt;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 60px;
+  }
+
+  .img-grid {
+    columns: 5;
+    column-gap: 10px;
+    width: 700px;
+    margin: 0 auto;
+  }
+
+  .img-item {
+    break-inside: avoid;
+    margin-bottom: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    background: #cccccc;
+  }
+
+  .img-item:nth-child(5n+1) { height: 120px; }
+  .img-item:nth-child(5n+2) { height: 90px; }
+  .img-item:nth-child(5n+3) { height: 140px; }
+  .img-item:nth-child(5n+4) { height: 100px; }
+  .img-item:nth-child(5n+5) { height: 110px; }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .lightbox.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .lightbox-img {
+    height: 300px;
+    background: #cccccc;
+    transition: height 0.2s ease;
+    aspect-ratio: 4/5;
+  }
+
   /* ── RESPONSIVE ──────────────────────────────────────────── */
   @media (max-width: 900px) {
     .grid { grid-template-columns: repeat(2, 1fr); }
@@ -744,10 +804,55 @@
   <div class="lightbox-img" id="lightboxImg"></div>
 </div>
 
+<!-- ── PAGE: IMG ─────────────────────────────────────────── -->
+<div class="page" id="page-img">
+  <main class="img-page">
+    <p class="img-curated">Curated by X</p>
+    <div class="img-grid" id="imgGrid">
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+      <div class="img-item"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-img" id="lightboxImg"></div>
+</div>
+
 <!-- PROTOTYPE SWITCHER -->
 <div class="proto-nav">
   <button class="proto-btn active" id="btn-home" onclick="showPage('home')">Homepage</button>
   <button class="proto-btn" id="btn-story" onclick="showPage('story')">Story page</button>
+  <button class="proto-btn" id="btn-img" onclick="showPage('img')">IMG page</button>
   <button class="proto-btn" id="btn-img" onclick="showPage('img')">IMG page</button>
 </div>
 
@@ -825,6 +930,23 @@
   document.addEventListener('click', () => {
     tagDropdown.classList.remove('open');
     navTag.classList.remove('active');
+  });
+
+  // IMG nav button
+  document.querySelector('.nav-img').addEventListener('click', (e) => {
+    e.preventDefault();
+    showPage('img');
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  document.getElementById('imgGrid').addEventListener('click', (e) => {
+    const item = e.target.closest('.img-item');
+    if (!item) return;
+    lightbox.classList.add('open');
+  });
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('open');
   });
 
   // IMG nav button
