@@ -424,33 +424,6 @@
   .side-icon:hover { opacity: 0.6; }
   .side-moon { left: var(--pad); }
   .side-ig   { right: var(--pad); }
-  /* ── PROTO NAV (not part of design) ─────────────────────── */
-.proto-nav {
-    position: fixed;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 300;
-    display: flex;
-    gap: 4px;
-  }
-  .proto-btn {
-    font-family: var(--font-ui);
-    font-size: 9px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 4px 8px;
-    background: #f9f9f9;
-    color: #111111;
-    border: none;
-    cursor: pointer;
-    border-radius: 2px;
-    opacity: 0.6;
-    transition: opacity 0.2s;
-  }
-  .proto-btn.active { background: #f9f9f9; opacity: 1; color: #0000ff; }
-  .proto-btn:hover { opacity: 1; }
-
   /* ── INFO PAGE ───────────────────────────────────────────── */
   .info-page {
     padding-top: 150px;
@@ -963,16 +936,6 @@
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <div class="lightbox-img" id="lightboxImg"></div>
-</div>
-
-<!-- PROTOTYPE SWITCHER -->
-<div class="proto-nav">
-  <button class="proto-btn active" id="btn-home" onclick="showPage('home')">Homepage</button>
-  <button class="proto-btn" id="btn-story" onclick="showPage('story')">Story page</button>
-  <button class="proto-btn" id="btn-info" onclick="showPage('info')">Info page</button>
-  <button class="proto-btn" id="btn-img" onclick="showPage('img')">IMG page</button>
-</div>
-
 <script>
 
   // Logo shrink on scroll
