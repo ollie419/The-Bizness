@@ -1084,10 +1084,14 @@ const lightbox = document.getElementById('lightbox');
     lightbox.classList.remove('open');
   });
 
-  // Dark mode toggle
+  // Dark mode persistence
   const moonBtn = document.querySelector('.side-moon');
+  if (localStorage.getItem('dark') === '1') {
+    document.body.classList.add('dark');
+  }
   moonBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark');
+    localStorage.setItem('dark', document.body.classList.contains('dark') ? '1' : '0');
   });
 
   // Nav scroll state
