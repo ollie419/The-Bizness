@@ -1094,6 +1094,26 @@ const lightbox = document.getElementById('lightbox');
       updateLogo();
     }
   }
+  // Page switcher
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    window.scrollTo(0, 0);
+
+    // Small static logo on non-home pages
+    if (name !== 'home') {
+      isHomePage = false;
+      navLogo.classList.add('scrolled');
+      navLogo.style.fontSize = '14px';
+      navLogo.style.top = '40px';
+    } else {
+      isHomePage = true;
+      navLogo.classList.remove('scrolled');
+      navLogo.style.fontSize = '';
+      navLogo.style.top = '';
+      updateLogo();
+    }
+  }
 </script>
 </body>
 </html>
