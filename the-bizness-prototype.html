@@ -427,8 +427,9 @@
   /* ── PROTO NAV (not part of design) ─────────────────────── */
 .proto-nav {
     position: fixed;
-    top: 8px;
-    right: 8px;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 300;
     display: flex;
     gap: 4px;
@@ -439,15 +440,15 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 4px 8px;
-    background: #cc0000;
-    color: white;
+    background: #f9f9f9;
+    color: #111111;
     border: none;
     cursor: pointer;
     border-radius: 2px;
     opacity: 0.6;
     transition: opacity 0.2s;
   }
-  .proto-btn.active { background: #ff0000; opacity: 1; }
+  .proto-btn.active { background: #f9f9f9; opacity: 1; color: #0000ff; }
   .proto-btn:hover { opacity: 1; }
 
   /* ── INFO PAGE ───────────────────────────────────────────── */
@@ -704,7 +705,7 @@
 <!-- NAV -->
 <a class="nav-corner nav-info" href="#" onclick="showPage('home'); return false;">Info</a>
 <a class="nav-corner nav-tag" href="#">Tag</a>
-<a class="nav-corner nav-projects" href="#">Projects</a>
+<a class="nav-corner nav-projects" href="#" style="display:none;">Projects</a>
 <a class="nav-corner nav-img" href="#">IMG</a>
 
 <!-- Tag dropdown -->
