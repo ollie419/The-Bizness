@@ -1002,7 +1002,7 @@
         item.classList.add('active');
         cards.forEach(c => {
           const cardTag = c.dataset.tag;
-          c.style.display = (!cardTag || cardTag === tag) ? '' : 'none';
+          c.style.display = (cardTag === tag) ? '' : 'none';
         });
       }
 
