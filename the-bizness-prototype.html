@@ -112,20 +112,9 @@
     justify-content: flex-end;
     direction: rtl;
   }
-  .tag-item::after {
-    content: '';
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #ffff00;
-    margin-left: 8px;
-    opacity: 0;
-    transition: opacity 0.15s ease;
-    flex-shrink: 0;
-  }
-  .tag-item:hover::after,
-  .tag-item.active::after { opacity: 1; }
+  .tag-item { color: #888888; transition: color 0.15s ease; }
+  .tag-item:hover,
+  .tag-item.active { color: var(--blue); }
 
   /* Centre logo — shrinks on scroll */
   .nav-logo {
