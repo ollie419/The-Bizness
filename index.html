@@ -169,18 +169,16 @@
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 240px));
-    gap: clamp(20px, 2vw, 30px);
+    grid-template-columns: repeat(3, 400px);
+    gap: 40px;
     justify-content: center;
-    width: min(1050px, calc(100vw - 550px));
     margin: 0 auto;
   }
 
   .card {
     position: relative;
-    width: 100%;
-    aspect-ratio: 4/5;
-    max-width: 240px;
+    width: 400px;
+    height: 500px;
     overflow: hidden;
     cursor: pointer;
     container-type: inline-size;
@@ -197,32 +195,52 @@
   /* real images when you add src */
   .card-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
 
-.card-overlay {
+/* Blue bar — hidden by default, fades in on hover */
+  .card-bar {
     position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 54px;
+    background: var(--blue);
     opacity: 0;
-    transition: opacity 0.35s ease;
-    text-align: center;
+    transition: opacity 0.25s ease;
+    z-index: 1;
+  }
+  .card:hover .card-bar { opacity: 1; }
+  .card:hover .card-img { filter: none; }
+
+  /* Text overlay — always visible */
+  .card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    z-index: 2;
   }
 
-  .card:hover .card-img { filter: blur(14px) brightness(0.7); }
-  .card:hover .card-overlay { opacity: 1; }
-
-  .card-name,
-  .card-discipline {
-    font-family: var(--font-ui);
-    font-weight: 700;
-    letter-spacing: 0.01em;
+  .card-name {
+    font-family: var(--font-nav);
+    font-size: 18pt;
+    font-weight: 300;
+    color: #ffffff;
     text-transform: uppercase;
-    color: var(--blue);
-    line-height: 0.92;
-    text-align: center;
-    font-size: 14cqw;
+    line-height: 1.1;
+    text-align: left;
+  }
+
+  .card-discipline {
+    font-family: var(--font-nav);
+    font-size: 18pt;
+    font-weight: 300;
+    color: #ffffff;
+    text-align: right;
+    line-height: 1.1;
   }
 
   /* container query so cqw is relative to card width */
@@ -709,20 +727,19 @@
       <!-- Card 1 -->
       <article class="card" data-tag="design" onclick="showPage('story')">
         <div class="card-img"><img src="SCAN_1026.jpg" alt="Andu Masebo"></div>
+        <div class="card-bar"></div>
         <div class="card-overlay">
-          <div class="card-name">Andu</div>
-          <div class="card-name">Masebo</div>
-          <div class="card-discipline">Product</div>
-          <div class="card-discipline">Designer</div>
+          <div class="card-name">Andu<br>Masebo</div>
+          <div class="card-discipline">Product<br>Designer</div>
         </div>
       </article>
 
       <!-- Card 2 -->
       <article class="card" data-tag="photography">
         <div class="card-img"><img src="IMG_9261.jpg" alt=""></div>
+        <div class="card-bar"></div>
         <div class="card-overlay">
-          <div class="card-name">Yuki</div>
-          <div class="card-name">Tanaka</div>
+          <div class="card-name">Yuki<br>Tanaka</div>
           <div class="card-discipline">Photographer</div>
         </div>
       </article>
@@ -730,9 +747,9 @@
       <!-- Card 3 -->
       <article class="card" data-tag="music">
         <div class="card-img"><img src="IMG_0812.jpg" alt=""></div>
+        <div class="card-bar"></div>
         <div class="card-overlay">
-          <div class="card-name">Marcus</div>
-          <div class="card-name">Hall</div>
+          <div class="card-name">Marcus<br>Hall</div>
           <div class="card-discipline">Musician</div>
         </div>
       </article>
