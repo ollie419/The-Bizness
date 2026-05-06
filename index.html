@@ -10,6 +10,14 @@
 <link rel="stylesheet" href="https://use.typekit.net/tae4gae.css">
 
 <style>
+  /* ── CUSTOM FONTS ───────────────────────────────────────── */
+  @font-face {
+    font-family: 'DIN Alternate';
+    src: url('DINAlternate-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+  }
+
   /* ── TOKENS ─────────────────────────────────────────────── */
 :root {
     --bg:          #e6e6e6;
@@ -139,10 +147,10 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
-    font-family: var(--font-nav);
+    font-family: 'DIN Alternate', var(--font-nav);
     font-size: var(--logo-large);
-    font-weight: 600;
-    font-variation-settings: 'wdth' 50, 'wght' 600;
+    font-weight: 700;
+    font-variation-settings: normal;
     color: var(--blue);
     text-transform: uppercase;
     letter-spacing: 0.02em;
