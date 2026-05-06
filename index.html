@@ -6,7 +6,8 @@
 <title>The Bizness</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DIN+Condensed&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DIN+Condensed&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.typekit.net/tae4gae.css">
 
 <style>
   /* ── TOKENS ─────────────────────────────────────────────── */
@@ -18,13 +19,29 @@
     --ink-light:   #999999;
 
     --font-ui:     'DIN Condensed', 'Barlow Condensed', sans-serif;
-    --font-nav:    'Inter', sans-serif;
+    --font-nav:    'acumin-variable-concept', sans-serif;
+    --font-nav-settings: 'wdth' 75, 'wght' 300;
     --font-serif:  'Cormorant Garamond', Georgia, serif;
     --font-body:   'Helvetica Neue', Helvetica, Arial, sans-serif;
 
     --pad:         40px;
     --logo-large:  130px;
     --logo-small:  14px;
+  }
+
+  /* ── FONT VARIATION ─────────────────────────────────────── */
+  /* SemiCondensed Light — card overlays and body text */
+  .card-name, .card-discipline,
+  .story-meta span, .story-title, .story-credits,
+  .info-text p, .info-enquiry, .info-field label,
+  .info-field input, .info-field textarea, .info-send,
+  .img-curated {
+    font-variation-settings: 'wdth' 75, 'wght' 300;
+  }
+
+  /* Light — nav buttons and logo */
+  .nav-corner, .nav-logo, .tag-item {
+    font-variation-settings: 'wdth' 100, 'wght' 300;
   }
 
   /* ── DARK MODE ───────────────────────────────────────────── */
