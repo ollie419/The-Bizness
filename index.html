@@ -188,9 +188,17 @@
   .card-img {
     position: absolute;
     inset: 0;
-    background: #ffffff;
     transition: filter 0.4s ease;
   }
+  .card:nth-child(1) .card-img { background: #2a2a2a; }
+  .card:nth-child(2) .card-img { background: #4a3728; }
+  .card:nth-child(3) .card-img { background: #1a3a2a; }
+  .card:nth-child(4) .card-img { background: #2a2a4a; }
+  .card:nth-child(5) .card-img { background: #3a1a1a; }
+  .card:nth-child(6) .card-img { background: #1a3a3a; }
+  .card:nth-child(7) .card-img { background: #3a2a1a; }
+  .card:nth-child(8) .card-img { background: #1a2a3a; }
+  .card:nth-child(9) .card-img { background: #2a1a3a; }
 
   /* real images when you add src */
   .card-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
@@ -213,15 +221,15 @@
   /* Text overlay — always visible */
   .card-overlay {
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     left: 0;
     right: 0;
-    height: 54px;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
     padding: 0 10px;
     z-index: 2;
+    height: auto;
   }
 
   .card-name {
@@ -807,14 +815,7 @@
 
       <!-- Cards 9–16 (blank) -->
       <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
-      <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
-      <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
-      <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
-      <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
-      <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
-      <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
-      <article class="card"><div class="card-img"></div><div class="card-overlay"></div></article>
-
+      
     </div>
   </main>
 </div>
