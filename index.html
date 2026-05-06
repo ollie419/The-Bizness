@@ -6,7 +6,7 @@
 <title>The Bizness</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DIN+Condensed&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.typekit.net/tae4gae.css">
 
 <style>
@@ -15,12 +15,8 @@
     --bg:          #e6e6e6;
     --blue:        #0000ff;
     --ink:         #111111;
-    --ink-mid:     #555555;
-    --ink-light:   #999999;
 
-    --font-ui:     'DIN Condensed', 'Barlow Condensed', sans-serif;
     --font-nav:    'acumin-variable-concept', sans-serif;
-    --font-nav-settings: 'wdth' 75, 'wght' 300;
     --font-serif:  'Cormorant Garamond', Georgia, serif;
     --font-body:   'Helvetica Neue', Helvetica, Arial, sans-serif;
 
@@ -140,7 +136,7 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
-    font-family: var(--font-ui);
+    font-family: var(--font-nav);
     font-size: var(--logo-large);
     font-weight: 500;
     color: var(--blue);
@@ -164,19 +160,11 @@
     display: none;
   }
 
-  /* ── PAGE SWITCHER (prototype only) ─────────────────────── */
+  
   .page { display: none; }
   .page.active { display: block; }
 
-  /* ── SPLASH ──────────────────────────────────────────────── */
-  /* Wrapper takes up one full viewport of scroll height,
-     so the page has room to scroll the splash away */
-  .splash-scroll-trap {
-    height: 100vh;
-    position: relative;
-    z-index: 200;
-    /* invisible spacer — the fixed panel sits on top */
-  }
+  
 
   /* ── HOMEPAGE ────────────────────────────────────────────── */
 .home {
@@ -226,7 +214,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 50px;
+    height: 60px;
     background: var(--blue);
     opacity: 0;
     transition: opacity 0.25s ease;
@@ -375,13 +363,7 @@
     margin-bottom: 1.4em;
   }
 
-  .story-credits {
-    margin-top: 32px;
-    font-family: var(--font-nav);
-    font-size: 10pt;
-    font-weight: 300;
-    color: var(--blue);
-  }
+  
 
   .story-bottom-card {
     width: 625px;
@@ -631,77 +613,10 @@
     height: auto;
   }
 
-  /* ── IMG PAGE ────────────────────────────────────────────── */
-  .img-page {
-    padding-top: 150px;
-    padding-bottom: 80px;
-  }
-
-  .img-curated {
-    text-align: center;
-    font-family: var(--font-nav);
-    font-size: 14pt;
-    font-weight: 700;
-    color: var(--blue);
-    margin-bottom: 60px;
-  }
-
-  .img-grid {
-    columns: 5;
-    column-gap: 10px;
-    width: 900px;
-    margin: 0 auto;
-  }
-
-  .img-item {
-    break-inside: avoid;
-    margin-bottom: 10px;
-    cursor: pointer;
-    overflow: hidden;
-    background: #cccccc;
-  }
-
-  .img-item:nth-child(5n+1) { height: 150px; }
-  .img-item:nth-child(5n+2) { height: 112px; }
-  .img-item:nth-child(5n+3) { height: 175px; }
-  .img-item:nth-child(5n+4) { height: 125px; }
-  .img-item:nth-child(5n+5) { height: 137px; }
-
-  /* Lightbox */
-  .lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    z-index: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-  }
-  .lightbox.open {
-    opacity: 1;
-    pointer-events: all;
-  }
- .lightbox-img {
-    max-height: 500px;
-    max-width: 500px;
-    background: #cccccc;
-    width: auto;
-    height: auto;
-  }
 
   /* ── RESPONSIVE ──────────────────────────────────────────── */
   @media (max-width: 900px) {
     .grid { grid-template-columns: repeat(2, 1fr); }
-    .story-hero { grid-template-columns: 1fr; gap: 24px; padding: 24px var(--pad) 0; }
-    .story-portrait-wrap { max-width: 80vw; }
-    .story-images-pair { grid-template-columns: 1fr; }
-    .share-btn { left: 16px; }
-  }
-  @media (max-width: 540px) {
-    .grid { grid-template-columns: repeat(2, 1fr); gap: 3px; }
   }
 </style>
 </head>
