@@ -48,6 +48,30 @@
     font-variation-settings: 'wdth' 100, 'wght' 300;
   }
 
+  /* ── PAGE BORDER LINES ───────────────────────────────────── */
+  body::before,
+  body::after {
+    content: '';
+    position: fixed;
+    background: var(--blue);
+    z-index: 90;
+    pointer-events: none;
+  }
+  /* Left and right vertical lines */
+  body::before {
+    top: 0; bottom: 0;
+    width: 0.25pt;
+    box-shadow: 120px 0 0 0 var(--blue), calc(100vw - 120px) 0 0 0 var(--blue);
+    left: 0;
+  }
+  /* Top horizontal line */
+  body::after {
+    top: 100px;
+    left: 120px;
+    right: 120px;
+    height: 0.25pt;
+  }
+
   /* ── DARK MODE ───────────────────────────────────────────── */
   body.dark {
     --bg:   #000000;
@@ -96,10 +120,10 @@
   }
   .nav-corner:hover::before,
   .nav-corner.active::before { opacity: 1; }
-  .nav-info    { top: var(--pad); left: var(--pad); }
-  .nav-tag     { top: var(--pad); right: var(--pad); }
-  .nav-projects{ bottom: var(--pad); left: var(--pad); }
-  .nav-img     { bottom: var(--pad); right: var(--pad); }
+  .nav-info    { top: 46px; left: 46px; }
+  .nav-tag     { top: 46px; right: 50px; }
+  .nav-projects{ bottom: 52px; left: 46px; }
+  .nav-img     { bottom: 46px; right: 50px; }
 
   /* ── TAG DROPDOWN ────────────────────────────────────────── */
   .tag-dropdown {
@@ -484,8 +508,8 @@
     outline: none;
   }
   .side-icon:hover { opacity: 0.6; }
-  .side-moon { left: var(--pad); }
-  .side-ig   { right: var(--pad); }
+  .side-moon { left: 54px; }
+  .side-ig   { right: 54px; }
   /* ── INFO PAGE ───────────────────────────────────────────── */
   .info-page {
     padding-top: 150px;
