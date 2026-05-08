@@ -121,9 +121,9 @@
   .nav-corner:hover::before,
   .nav-corner.active::before { opacity: 1; }
 .nav-info    { top: 46px; left: 60px; transform: translateX(-50%); }
-  .nav-tag     { top: 46px; right: 60px; transform: translateX(50%); }
+.nav-tag     { top: 46px; left: calc(100vw - 60px); transform: translateX(-50%); }
   .nav-projects{ bottom: 46px; left: 60px; transform: translateX(-50%); }
-  .nav-img     { bottom: 46px; right: 60px; transform: translateX(50%); }
+  .nav-img     { bottom: 46px; left: calc(100vw - 60px); transform: translateX(-50%); }
 
   /* ── TAG DROPDOWN ────────────────────────────────────────── */
   .tag-dropdown {
@@ -508,8 +508,8 @@
     outline: none;
   }
   .side-icon:hover { opacity: 0.6; }
-  .side-moon { left: 60px; }
-  .side-ig   { right: 60px; }
+  .side-moon { left: 60px; transform: translateX(-50%) translateY(-50%); }
+  .side-ig   { left: calc(100vw - 60px); transform: translateX(-50%) translateY(-50%); }
   /* ── INFO PAGE ───────────────────────────────────────────── */
   .info-page {
     padding-top: 150px;
