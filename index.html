@@ -128,24 +128,23 @@
   /* ── TAG DROPDOWN ────────────────────────────────────────── */
   .tag-dropdown {
     position: fixed;
-    top: calc(100px + 10px);
-    left: calc(100vw - 120px - 10px);
-    transform: translateX(-100%);
+    top: 110px;
+    left: calc(100vw - 120px + 10px);
     z-index: 99;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 2px;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease;
-    text-align: right;
+    text-align: left;
   }                                                                                                                                                                                                                                                                                                                                                                                                                   
   .tag-dropdown.open {
     opacity: 1;
     pointer-events: all;
   }
-  .tag-item {
+ .tag-item {
     font-family: var(--font-nav);
     font-size: 10pt;
     font-weight: 300;
@@ -156,10 +155,10 @@
     padding: 2px 0;
     transition: opacity 0.15s;
     position: relative;
-    display: flex;                                                                                                                                                                                                                                                                                                                                                            
+    display: flex;
     align-items: center;
-    justify-content: flex-end;
-    direction: rtl;
+    justify-content: flex-start;
+    direction: ltr;
   }
   .tag-item { color: #888888; transition: color 0.15s ease; }
   .tag-item:hover,
