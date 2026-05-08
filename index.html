@@ -264,7 +264,7 @@
     margin-bottom: 20px;
   }
 
-  /* Static label — always visible at card bottom */
+  /* At rest: name/discipline float at bottom, no background */
   .card-label {
     position: absolute;
     bottom: 10px;
@@ -275,6 +275,10 @@
     align-items: flex-end;
     z-index: 3;
     pointer-events: none;
+    transition: transform 0.35s ease;
+  }
+  .card:hover .card-label {
+    transform: translateY(-110px);
   }
 
   .card-name {
