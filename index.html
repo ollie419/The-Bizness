@@ -1082,6 +1082,15 @@ const lightbox = document.getElementById('lightbox');
     document.getElementById('page-' + name).classList.add('active');
     window.scrollTo(0, 0);
 
+    // Reset tag filter when leaving homepage
+    if (name !== 'home') {
+      activeTag = null;
+      tagItems.forEach(t => t.classList.remove('active'));
+      cards.forEach(c => c.style.display = '');
+      tagDropdown.classList.remove('open');
+      navTag.classList.remove('active');
+    }
+
     // Small static logo on non-home pages
     if (name !== 'home') {
       isHomePage = false;
